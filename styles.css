@@ -1,0 +1,799 @@
+/* Base Variables */
+:root {
+    /* Default Theme */
+    --primary-color: #2a4365;
+    --secondary-color: #4299e1;
+    --accent-color: #90cdf4;
+    --text-color: #2d3748;
+    --bg-color: #f7fafc;
+    --card-bg: #ffffff;
+    --hover-color: #2b6cb0;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Trump Theme */
+  .theme-trump {
+    --primary-color: #c53030;
+    --secondary-color: #e53e3e;
+    --accent-color: #fc8181;
+    --text-color: #2d3748;
+    --bg-color: #fff5f5;
+    --card-bg: #ffffff;
+    --hover-color: #9b2c2c;
+    --border-color: #fed7d7;
+    --shadow-color: rgba(197, 48, 48, 0.1);
+  }
+  
+  /* Harris Theme */
+  .theme-harris {
+    --primary-color: #44337a;
+    --secondary-color: #6b46c1;
+    --accent-color: #9f7aea;
+    --text-color: #2d3748;
+    --bg-color: #faf5ff;
+    --card-bg: #ffffff;
+    --hover-color: #553c9a;
+    --border-color: #e9d8fd;
+    --shadow-color: rgba(107, 70, 193, 0.1);
+  }
+  
+  /* Reset and Base Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+  
+  .theme-toggles {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .theme-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px var(--shadow-color);
+  }
+  
+  .theme-btn.active {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  /* Navigation Styles */
+  .lesson-nav {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .lesson-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  .lesson-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .lesson-nav a:hover {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .lesson-nav a.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Main Content Styles */
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  
+  .section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Flashcard Styles */
+  .flashcard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  /* Flashcard Styling Enhancement */
+.flashcard {
+    perspective: 1000px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.flashcard .front,
+.flashcard .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.8s ease;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.flashcard .back {
+    transform: rotateY(180deg);
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flashcard .back p:first-of-type {
+    margin-bottom: 1rem;
+}
+
+/* Example sentence styling */
+.flashcard .back p:last-of-type {
+    position: relative;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Dividing line before example */
+.flashcard .back p:last-of-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    opacity: 0.6;
+}
+
+.flashcard .front h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.flashcard.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.flashcard.flipped .back {
+    transform: rotateY(0);
+}
+
+/* Hover effect */
+.flashcard:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flashcard {
+        height: 220px; /* Slightly taller on mobile for better content fit */
+    }
+    
+    .flashcard .back p:last-of-type {
+        font-size: 0.95rem;
+    }
+}
+  
+  /* Content Card Styles */
+  .content-card {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+  
+  /* Discussion Question Styles */
+  .discussion-question {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    transform: scale(1);
+    transition: transform 0.2s ease;
+  }
+  
+  .discussion-question:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Quiz Styles */
+  .quiz-container {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+  
+  .quiz-question {
+    margin-bottom: 2rem;
+  }
+  
+  .options {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .option {
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .option:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateX(10px);
+  }
+  
+  .option.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  /* Political Dodging Section Styles */
+  .technique {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.2s ease;
+  }
+  
+  .technique:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Progress Bar Styles */
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 0%;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  /* Popup Styles */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    max-width: 90%;
+    width: 500px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .lesson-nav ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  
+    .flashcard-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .technique-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Utility Classes */
+  .hidden {
+    display: none;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .slide-in {
+    animation: slideIn 0.3s ease forwards;
+  }
+  /* Diplomatic Phrases Section Styling */
+.phrase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+.phrase-item {
+    background-color: var(--card-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform 0.2s ease;
+}
+
+.phrase-item:hover {
+    transform: translateX(10px);
+}
+
+.phrase {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Georgia', serif;
+    quotes: """ """;
+}
+
+.phrase::before {
+    content: open-quote;
+    color: var(--accent-color);
+}
+
+.phrase::after {
+    content: close-quote;
+    color: var(--accent-color);
+}
+
+.explanation {
+    font-size: 1rem;
+    color: var(--text-color);
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-color);
+    margin-left: 0.5rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Section Header Styling */
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .phrase {
+        font-size: 1.1rem;
+    }
+    
+    .explanation {
+        font-size: 0.9rem;
+    }
+    
+    .phrase-item {
+        padding: 1rem;
+    }
+}
+
+/* Hover effects for interactivity */
+.phrase-item:hover {
+    background-color: var(--bg-color);
+}
+
+.phrase-item:hover .phrase {
+    color: var(--hover-color);
+}
+
+/* Animation for new items */
+.phrase-item {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Theme Button Styling */
+.theme-toggles {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.theme-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 40px; /* Fixed height for consistency */
+}
+
+.theme-btn img {
+    width: 24px; /* Fixed width */
+    height: 24px; /* Fixed height */
+    object-fit: cover; /* Maintains aspect ratio */
+    border-radius: 50%; /* Makes the image circular */
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.theme-btn.active {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .theme-btn {
+        padding: 0.4rem 0.8rem;
+        height: 36px;
+    }
+    
+    .theme-btn img {
+        width: 20px;
+        height: 20px;
+    }
+}
+/* Humor Section Styling */
+.humor-card {
+    background-color: var(--card-bg);
+    border: 2px dashed var(--accent-color);
+    position: relative;
+}
+
+.humor-card::before {
+    content: "😄";
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 2rem;
+    background: var(--card-bg);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.fail-example {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--accent-color);
+}
+
+.scenario {
+    padding-left: 1rem;
+}
+
+.question {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.response {
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.reality-check {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-color);
+}
+
+.funny-phrases, .funny-tips {
+    list-style: none;
+    padding: 0;
+}
+
+.funny-phrases li, .funny-tips li {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background-color: var(--bg-color);
+    border-radius: 0.5rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.funny-phrases li:before {
+    content: "🎯";
+    position: absolute;
+    left: 0.5rem;
+}
+
+.funny-tips li:before {
+    content: "💡";
+    position: absolute;
+    left: 0.5rem;
+}
+
+.translation-item {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 0.5rem;
+}
+
+.diplomatic {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.reality {
+    font-style: italic;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-color);
+    color: var(--secondary-color);
+}
+
+/* Hover animations */
+.fail-example:hover, .translation-item:hover {
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+}
+
+.funny-phrases li:hover, .funny-tips li:hover {
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+/* Case Studies Styling */
+.case-study {
+    margin-bottom: 3rem;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.scenario-card {
+    padding: 2rem;
+    border-left: 4px solid var(--primary-color);
+    margin: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 0.5rem;
+}
+
+.situation {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed var(--border-color);
+}
+
+.approaches {
+    padding-top: 1rem;
+}
+
+.approach {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--card-bg);
+}
+
+.approach.good {
+    border-left: 4px solid #68D391;
+}
+
+.approach.bad {
+    border-left: 4px solid #FC8181;
+}
+
+.why-it-works, .why-it-fails {
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-color);
+}
+
+.solution-steps {
+    list-style-type: none;
+    padding: 0;
+}
+
+.solution-steps li {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.solution-steps li:before {
+    content: "→";
+    position: absolute;
+    left: 0.5rem;
+    color: var(--primary-color);
+}
+
+.key-principle {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 0.5rem;
+}
+
+/* Funny scenario styling */
+.scenario-card.funny {
+    border-left: 4px solid #9F7AEA;
+}
+
+.what-you-want-to-say {
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+}
+
+.actual-solution {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+}
+
+.lesson-learned {
+    margin-top: 1rem;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+/* Hover effects */
+.scenario-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.approach:hover {
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .scenario-card {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+    
+    .approach {
+        padding: 0.8rem;
+    }
+}
