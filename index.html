@@ -1,552 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expressing Opinions Diplomatically</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Art of Expressing Opinions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-H+K7U5CnXl1h5ywQfKtSj8PCmoN9FfVqSgqv9ZC2FQgLkSrmE7UZ5EKeosFVJeFt3IAPJ3BM4ti5P9g7N2u2qg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
 </head>
-<body class="theme-default">
-    <header>
-        <div class="theme-toggles">
-            <button id="default-theme" class="theme-btn active">
-                <i class="fas fa-circle"></i> Default
-            </button>
-            <button id="trump-theme" class="theme-btn">
-                <img src="trump.png" alt="Trump theme" /> Trump
-            </button>
-            <button id="harris-theme" class="theme-btn">
-                <img src="kamala.png" alt="Harris theme" /> Kamala
-            </button>
+<body class="theme-calm">
+    <div class="focus-overlay" id="focusOverlay" aria-hidden="true"></div>
+
+    <header class="hero" id="top">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__pattern" aria-hidden="true"></div>
+        <div class="shell">
+            <div class="hero__bar">
+                <div class="brand">
+                    <span class="brand__icon" aria-hidden="true">🗣️</span>
+                    <div>
+                        <p class="brand__eyebrow">Diplomatic Toolkit</p>
+                        <h1 class="brand__title">The Art of Expressing Opinions</h1>
+                    </div>
+                </div>
+                <nav class="primary-nav" aria-label="Primary">
+                    <button class="primary-nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <ul id="navLinks">
+                        <li><a href="#persona" class="nav-link active">Blueprint</a></li>
+                        <li><a href="#diagnostic" class="nav-link">Readiness</a></li>
+                        <li><a href="#lexicon" class="nav-link">Language Lab</a></li>
+                        <li><a href="#practice" class="nav-link">Practice</a></li>
+                        <li><a href="#journal" class="nav-link">Reflection</a></li>
+                        <li><a href="#resources" class="nav-link">Resources</a></li>
+                    </ul>
+                </nav>
+                <div class="hero__controls" aria-label="Display controls">
+                    <div class="theme-toggle" role="group" aria-label="Theme selector">
+                        <button class="theme-toggle__btn active" data-theme="calm" aria-pressed="true">Calm</button>
+                        <button class="theme-toggle__btn" data-theme="civic" aria-pressed="false">Civic</button>
+                        <button class="theme-toggle__btn" data-theme="bold" aria-pressed="false">Bold</button>
+                    </div>
+                    <button class="hero__control" id="focusToggle" aria-pressed="false"><i class="fa-solid fa-eye-slash"></i><span>Focus</span></button>
+                    <div class="font-scale" role="group" aria-label="Font size">
+                        <button class="font-scale__btn" data-scale="-1" aria-label="Decrease font size"><i class="fa-solid fa-minus"></i></button>
+                        <button class="font-scale__btn" data-scale="reset" aria-label="Reset font size">Aa</button>
+                        <button class="font-scale__btn" data-scale="1" aria-label="Increase font size"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__content">
+                <div class="hero__text">
+                    <p class="hero__eyebrow">Transform every difficult conversation into a bridge.</p>
+                    <h2 class="hero__heading">Craft responses that honor <span id="personaNameSlot">your values</span> while inviting dialogue.</h2>
+                    <p class="hero__lead">Build a complete conversational protocol tailored to your personality, the people you talk with, and the emotional temperature in the room.</p>
+                    <div class="hero__cta">
+                        <button class="btn btn--primary" id="startBlueprint">Start 7-Minute Blueprint</button>
+                        <a class="btn btn--ghost" href="#resources">Browse quick wins</a>
+                    </div>
+                    <div class="hero__metrics" role="list">
+                        <div class="metric" role="listitem">
+                            <span class="metric__value" id="progressValue">0%</span>
+                            <span class="metric__label">Protocol Completed</span>
+                        </div>
+                        <div class="metric" role="listitem">
+                            <span class="metric__value" id="confidencePulse">Neutral</span>
+                            <span class="metric__label">Confidence Pulse</span>
+                        </div>
+                        <div class="metric" role="listitem">
+                            <span class="metric__value" id="toneDescriptor">Balanced</span>
+                            <span class="metric__label">Tone Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__panel">
+                    <div class="hero__card">
+                        <h3><i class="fa-solid fa-compass"></i> Conversation Compass</h3>
+                        <p>Answer three questions to tailor the entire experience:</p>
+                        <ol>
+                            <li>Who are you speaking with?</li>
+                            <li>What outcome matters most?</li>
+                            <li>How charged is the topic?</li>
+                        </ol>
+                        <button class="btn btn--secondary" id="openPersona">Personalize now</button>
+                        <p class="hero__hint">Responses update instantly across your toolkit.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1>The Art of Expressing Opinions</h1>
-        <p class="subtitle">A Guide to Diplomatic Discussion in Challenging Times</p>
+        <div class="hero__scroll" aria-hidden="true">
+            <span>Scroll for the protocol</span>
+            <i class="fa-solid fa-angles-down"></i>
+        </div>
     </header>
 
-    <nav class="lesson-nav">
-        <ul>
-            <li><a href="#intro" class="active">Introduction</a></li>
-            <li><a href="#vocabulary">Key Vocabulary</a></li>
-            <li><a href="#main-lesson">Main Lesson</a></li>
-            <li><a href="#political-dodging">Political Dodging 101</a></li>
-            <li><a href="#diplomatic-fails">When Diplomacy Fails 😄</a></li>
-            <li><a href="#case-studies">Case Studies</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-        </ul>
-    </nav>
-
     <main>
-        <section id="intro" class="section active">
-            <h2>Introduction</h2>
-            <div class="content-card">
-                <p>In today's polarized world, expressing opinions on sensitive topics requires both courage and finesse. This comprehensive lesson will explore:</p>
-                <ul>
-                    <li>🎯 Share your views respectfully while maintaining authenticity</li>
-                    <li>🤝 Navigate heated disagreements with grace</li>
-                    <li>💭 Choose appropriate language for sensitive topics</li>
-                    <li>🛡️ Maintain your integrity while being considerate</li>
-                    <li>🌍 Understand cultural sensitivities in global discussions</li>
-                    <li>⚖️ Balance honesty with diplomacy</li>
-                </ul>
-            </div>
-
-            <div class="discussion-question">
-                <h3>Opening Discussion Point 🤔</h3>
-                <p>"In your experience, what makes some topics more sensitive than others?"</p>
-            </div>
-        </section>
-
-        <section id="vocabulary" class="section">
-            <h2>Essential Vocabulary</h2>
-            <div class="flashcard-container">
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Contentious</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Causing or likely to cause disagreement or argument</p>
-                        <p>Example: "Immigration is often a contentious topic."</p>
-                    </div>
+        <section class="page-section" id="persona">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 01</p>
+                    <h2>Craft your diplomatic blueprint</h2>
+                    <p>We translate your intent into language that lands. Tell us who you are, who you are speaking to, and what success sounds like.</p>
                 </div>
-                
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Diplomatic</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Having or showing an ability to deal with people in a sensitive and tactful way</p>
-                        <p>Example: "She gave a diplomatic response to the controversial question."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Nuanced</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Characterized by subtle differences, variations, or distinctions</p>
-                        <p>Example: "The issue requires a more nuanced approach."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Polarizing</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Dividing people into sharply opposing groups</p>
-                        <p>Example: "Social media can be a polarizing influence."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Rhetoric</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Language designed to persuade or make an impact</p>
-                        <p>Example: "The politician's rhetoric appealed to emotions rather than facts."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Discourse</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Written or spoken communication or debate</p>
-                        <p>Example: "We need more civil discourse in our political discussions."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Empathetic</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Showing ability to understand and share others' feelings</p>
-                        <p>Example: "An empathetic approach can help bridge differences."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Impartial</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Treating all sides fairly and equally</p>
-                        <p>Example: "The moderator remained impartial throughout the debate."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Substantiated</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Supported or proven with evidence</p>
-                        <p>Example: "Make sure your arguments are well-substantiated."</p>
-                    </div>
-                </div>
-
-                <div class="flashcard">
-                    <div class="front">
-                        <h3>Inflammatory</h3>
-                        <p>Click to reveal meaning</p>
-                    </div>
-                    <div class="back">
-                        <p>Likely to cause anger or strong emotions</p>
-                        <p>Example: "Avoid inflammatory language in sensitive discussions."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="main-lesson" class="section">
-            <h2>Expressing Opinions Diplomatically</h2>
-            
-            <div class="content-card">
-                <h3>Essential Diplomatic Phrases</h3>
-                <div class="phrase-list">
-                    <div class="phrase-item">
-                        <p class="phrase">"In my experience..."</p>
-                        <p class="explanation">Shows you're speaking from personal perspective, not universal truth</p>
-                    </div>
-                    <div class="phrase-item">
-                        <p class="phrase">"I understand where you're coming from, and..."</p>
-                        <p class="explanation">Acknowledges others' viewpoints before expressing yours</p>
-                    </div>
-                    <div class="phrase-item">
-                        <p class="phrase">"While I see your point about X, I wonder if we might also consider..."</p>
-                        <p class="explanation">Gentle way to introduce an alternative viewpoint</p>
-                    </div>
-                    <div class="phrase-item">
-                        <p class="phrase">"This is a complex issue, and from my perspective..."</p>
-                        <p class="explanation">Acknowledges nuance before stating opinion</p>
-                    </div>
-                    <div class="phrase-item">
-                        <p class="phrase">"I appreciate you sharing that view. My thoughts on this are..."</p>
-                        <p class="explanation">Shows respect before disagreeing</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="discussion-question">
-                <h3>🤔 Discussion Point</h3>
-                <p>Are there any opinions that should never be shared publicly?</p>
-                <div class="think-about">
-                    <p>Consider:</p>
-                    <ul>
-                        <li>Professional consequences</li>
-                        <li>Personal relationships</li>
-                        <li>Social harmony</li>
-                        <li>Cultural sensitivities</li>
-                        <li>Potential harm to vulnerable groups</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="discussion-question">
-                <h3>🌍 Cultural Perspective</h3>
-                <p>How do different cultures approach disagreement and conflict?</p>
-            </div>
-        </section>
-
-        <section id="political-dodging" class="section">
-            <h2>Political Dodging 101 🎭</h2>
-            <div class="content-card humor">
-                <h3>The Art of Non-Answers</h3>
-                <div class="technique-list">
-                    <div class="technique">
-                        <h4>1. The Classic Pivot 🔄</h4>
-                        <p>Question: "Do you support X policy?"</p>
-                        <p>Response: "What's really important is focusing on [completely different topic]..."</p>
-                        <p class="explanation">Why it works: Redirects attention while appearing to engage</p>
-                    </div>
-
-                    <div class="technique">
-                        <h4>2. The Bridge Builder 🌉</h4>
-                        <p>Question: "Why did you vote against the bill?"</p>
-                        <p>Response: "I'm glad you asked about legislation. Let me tell you about the bills I've supported..."</p>
-                        <p class="explanation">Why it works: Creates a bridge to more favorable territory</p>
-                    </div>
-
-                    <div class="technique">
-                        <h4>3. The Time Traveler ⏰</h4>
-                        <p>Question: "What's your stance on current issue X?"</p>
-                        <p>Response: "Let's look at the historical context... [discusses past events instead]"</p>
-                        <p class="explanation">Why it works: Shifts focus to safer, historical ground</p>
-                    </div>
-
-                    <div class="technique">
-                        <h4>4. The Question Flipper 🔄</h4>
-                        <p>Question: "Why haven't you addressed issue Y?"</p>
-                        <p>Response: "That's an interesting question. What are your thoughts on how we should approach this?"</p>
-                        <p class="explanation">Why it works: Engages the questioner while avoiding direct response</p>
-                    </div>
-
-                    <div class="technique">
-                        <h4>5. The Broader Context 🌐</h4>
-                        <p>Question: "Did you make a mistake with Z?"</p>
-                        <p>Response: "We need to look at the bigger picture here... [discusses general trends]"</p>
-                        <p class="explanation">Why it works: Dilutes specific criticism in broader context</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="discussion-question">
-                <h3>💭 Ethics Check</h3>
-                <p>When is it acceptable to dodge a question, and when is it our responsibility to give a direct answer?</p>
-            </div>
-        </section>
-
-        <section id="case-studies" class="section">
-            <h2>Real-World Scenarios</h2>
-            
-            <div class="case-study workplace">
-                <h3>🏢 The Lunch Break Debate</h3>
-                <div class="scenario-card">
-                    <div class="situation">
-                        <h4>Scenario:</h4>
-                        <p>During a lunch break, your colleague James suddenly announces: "Nobody can convince me otherwise - pineapple absolutely belongs on pizza. Anyone who disagrees is just wrong!"</p>
-                        <p>The room tenses up. Half your colleagues are Italian. You can see them gripping their authentic pasta containers a little tighter...</p>
-                    </div>
-                    
-                    <div class="approaches">
-                        <h4>Possible Approaches:</h4>
-                        <div class="approach good">
-                            <h5>✅ Diplomatic Response:</h5>
-                            <p>"Food preferences are really fascinating! Different cultures have such varied culinary traditions. I once had a pizza in Japan with mayonnaise on it - really shows how tastes can evolve differently around the world."</p>
-                            <p class="why-it-works">Why it works: Redirects the conversation to cultural appreciation while defusing tension with a light-hearted example.</p>
+                <div class="persona-grid">
+                    <form class="card persona-form" id="personaForm">
+                        <div class="form-grid">
+                            <label>Preferred name
+                                <input type="text" id="personaName" name="name" placeholder="e.g., Jordan" required />
+                            </label>
+                            <label>Role or identity
+                                <input type="text" id="personaRole" name="role" placeholder="e.g., product manager, concerned parent" />
+                            </label>
+                            <label>Primary conversation partner
+                                <input type="text" id="personaAudience" name="audience" placeholder="e.g., skeptical colleague" />
+                            </label>
+                            <label>Desired outcome
+                                <input type="text" id="personaOutcome" name="outcome" placeholder="e.g., align on budget priorities" />
+                            </label>
+                            <label>Topic sensitivity (0-100)
+                                <input type="range" id="personaHeat" min="0" max="100" value="40" />
+                            </label>
+                            <label>Preferred tone
+                                <select id="personaTone">
+                                    <option value="Balanced">Balanced</option>
+                                    <option value="Warm">Warm</option>
+                                    <option value="Direct">Direct</option>
+                                    <option value="Curious">Curious</option>
+                                    <option value="Analytical">Analytical</option>
+                                </select>
+                            </label>
                         </div>
-                        
-                        <div class="approach bad">
-                            <h5>❌ What Not to Say:</h5>
-                            <p>"Actually, authentic Italian pizza never includes..."</p>
-                            <p class="why-it-fails">Why it fails: Escalates the conflict and invalidates personal preferences.</p>
+                        <div class="persona-actions">
+                            <button type="submit" class="btn btn--primary">Save blueprint</button>
+                            <button type="button" class="btn btn--ghost" id="personaReset">Reset</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="case-study social-media">
-                <h3>📱 The Social Media Minefield</h3>
-                <div class="scenario-card">
-                    <div class="situation">
-                        <h4>Scenario:</h4>
-                        <p>Your family member posts a controversial political article on social media and tags you, asking for your thoughts. The comment section is already becoming heated, and you notice your boss and colleagues are connected to your profile.</p>
-                    </div>
-                    
-                    <div class="approaches">
-                        <h4>Diplomatic Solutions:</h4>
-                        <ol class="solution-steps">
-                            <li>Acknowledge privately: Message your family member directly</li>
-                            <li>Redirect publicly: "Interesting topic - I find these issues are best discussed in person over coffee! ☕"</li>
-                            <li>Follow up: Suggest a private conversation where views can be expressed more fully</li>
-                        </ol>
-                        
-                        <div class="key-principle">
-                            <h5>Key Principle:</h5>
-                            <p>Public forums aren't always the best place for nuanced discussions of complex issues.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="case-study global">
-                <h3>🌍 The International Video Call</h3>
-                <div class="scenario-card">
-                    <div class="situation">
-                        <h4>Scenario:</h4>
-                        <p>During a global team meeting, a colleague from another country expresses views about gender roles that conflict with your company's equality policies. Several team members look uncomfortable.</p>
-                    </div>
-                    
-                    <div class="approaches">
-                        <h4>Professional Response Strategy:</h4>
-                        <div class="strategy-steps">
-                            <div class="step">
-                                <h5>Immediate Response:</h5>
-                                <p>"Thank you for sharing your perspective. In our global company, we work with many different cultural viewpoints while maintaining our core value of equality."</p>
+                        <p class="form-note"><i class="fa-solid fa-lock"></i> Saved privately to this device for next time.</p>
+                    </form>
+                    <aside class="card persona-preview">
+                        <h3><i class="fa-solid fa-user-astronaut"></i> Your conversation identity</h3>
+                        <p id="personaSummary">You're about to craft a respectful argument that balances courage with empathy. Completing the blueprint unlocks a tailored script, tone guidance, and practice drills.</p>
+                        <div class="persona-stats">
+                            <div>
+                                <span class="stat-label">Emotional temperature</span>
+                                <span class="stat-value" id="heatLabel">Composed</span>
                             </div>
-                            
-                            <div class="step">
-                                <h5>Follow-up Action:</h5>
-                                <p>Schedule a private discussion about company policies and cultural sensitivity</p>
+                            <div>
+                                <span class="stat-label">Tone calibration</span>
+                                <span class="stat-value" id="toneLabel">Balanced</span>
+                            </div>
+                            <div>
+                                <span class="stat-label">Outcome focus</span>
+                                <span class="stat-value" id="outcomeLabel">Dialogue &amp; alignment</span>
                             </div>
                         </div>
-                    </div>
+                        <button class="btn btn--secondary" id="downloadPlan"><i class="fa-solid fa-file-arrow-down"></i> Download action plan</button>
+                    </aside>
                 </div>
             </div>
-        
-            <div class="case-study customer-service">
-                <h3>🎭 The Customer Service Saga</h3>
-                <div class="scenario-card funny">
-                    <div class="situation">
-                        <h4>Scenario:</h4>
-                        <p>A customer insists that the Earth is flat and demands a refund on their globe purchase, claiming false advertising. They've brought a spirit level to prove their point.</p>
+        </section>
+
+        <section class="page-section alt" id="diagnostic">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 02</p>
+                    <h2>Readiness dashboard</h2>
+                    <p>Adjust the sliders to see how empathy, clarity, and courage shift your readiness. The gauge updates live and keeps score over time.</p>
+                </div>
+                <div class="diagnostic-grid">
+                    <div class="card gauge-card">
+                        <div class="gauge" id="readinessGauge" role="img" aria-label="Readiness gauge"></div>
+                        <p class="gauge-label">Overall readiness: <span id="readinessScore">52</span>%</p>
+                        <p class="gauge-text" id="readinessNarrative">Keep refining your intent and evidence before stepping in.</p>
                     </div>
-                    
-                    <div class="approaches">
-                        <h4>How to Handle (Without Losing Your Mind):</h4>
-                        <div class="approach diplomatic">
-                            <h5>Professional Response:</h5>
-                            <p>"I understand you have concerns about our product's accuracy. Let me explain our return policy..."</p>
+                    <div class="card sliders">
+                        <div class="slider-control">
+                            <label for="empathySlider">Empathy calibration</label>
+                            <input type="range" id="empathySlider" min="0" max="100" value="55" />
+                            <p class="slider-hint" id="empathyHint">Balance acknowledgement with clarity.</p>
                         </div>
-                        
-                        <div class="approach what-you-want-to-say">
-                            <h5>What You're Thinking: 🤐</h5>
-                            <p>"Sir, if the Earth were flat, cats would have pushed everything off the edge by now."</p>
+                        <div class="slider-control">
+                            <label for="claritySlider">Clarity &amp; evidence</label>
+                            <input type="range" id="claritySlider" min="0" max="100" value="60" />
+                            <p class="slider-hint" id="clarityHint">Prep two facts and one story.</p>
                         </div>
-                        
-                        <div class="actual-solution">
-                            <h5>Actual Solution:</h5>
-                            <p>Process the return while diplomatically avoiding any debate about planetary geometry.</p>
-                            <p class="lesson-learned">Sometimes the most diplomatic solution is simply completing the transaction and writing a very interesting entry in your daily work journal.</p>
+                        <div class="slider-control">
+                            <label for="courageSlider">Courage &amp; boundaries</label>
+                            <input type="range" id="courageSlider" min="0" max="100" value="45" />
+                            <p class="slider-hint" id="courageHint">Rehearse a graceful line for "no".</p>
                         </div>
+                        <div class="slider-footer">
+                            <p id="toneInsight">Your tone currently reads as <strong>Balanced</strong>. Consider softening openings if emotions run hot.</p>
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <h3><i class="fa-solid fa-chart-simple"></i> Alignment forecast</h3>
+                        <canvas id="alignmentChart" aria-label="Alignment projection chart"></canvas>
+                        <p class="chart-footnote">Data updates with every slider tweak. Aim for the shaded harmony zone.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="diplomatic-fails" class="section">
-            <h2>🎭 When Diplomacy Goes Wrong (Hilariously)</h2>
-            
-            <div class="content-card humor-card">
-                <h3>Famous "Foot-in-Mouth" Moments</h3>
-                
-                <div class="fail-example">
-                    <h4>🎤 The Classic Interview Dodge</h4>
-                    <div class="scenario">
-                        <p class="question">"Minister, why has the budget doubled?"</p>
-                        <p class="response">"Let me tell you about my grandmother's wonderful cookie recipe..."</p>
-                        <p class="reality-check">Reality: Everyone noticed. Nobody got cookies.</p>
+        <section class="page-section" id="lexicon">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 03</p>
+                    <h2>Language laboratory</h2>
+                    <p>Search, filter, and practice conversation-ready phrases. Tap a card to copy it to your clipboard.</p>
+                </div>
+                <div class="lexicon-toolbar">
+                    <input type="search" id="phraseSearch" placeholder="Search for words like compromise, acknowledge..." aria-label="Search phrases" />
+                    <div class="lexicon-tags" role="group" aria-label="Phrase filters">
+                        <button class="tag-btn active" data-tag="all">All</button>
+                        <button class="tag-btn" data-tag="bridge">Build bridges</button>
+                        <button class="tag-btn" data-tag="clarify">Clarify stance</button>
+                        <button class="tag-btn" data-tag="boundaries">Set boundaries</button>
+                        <button class="tag-btn" data-tag="deescalate">De-escalate</button>
                     </div>
                 </div>
-        
-                <div class="fail-example">
-                    <h4>💼 The Office Meeting Special</h4>
-                    <div class="scenario">
-                        <p class="question">"What happened to the project deadline?"</p>
-                        <p class="response">"Well, you see, quantum physics suggests time is relative..."</p>
-                        <p class="reality-check">Reality: Einstein couldn't save this one.</p>
-                    </div>
+                <div class="phrase-grid" id="phraseGrid" role="list"></div>
+                <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <section class="page-section alt" id="blueprint">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 04</p>
+                    <h2>Conversation blueprint generator</h2>
+                    <p>Instantly map your opening, middle, and close using your persona data. Regenerate as your context changes.</p>
                 </div>
-        
-                <div class="fail-example">
-                    <h4>🎪 The Public Speaking Circus</h4>
-                    <div class="scenario">
-                        <p class="situation">"Let's address the elephant in the room..."</p>
-                        <p class="reality-check">*Looks directly at person wearing gray*</p>
+                <div class="blueprint-grid">
+                    <div class="card blueprint-card">
+                        <h3><i class="fa-solid fa-lightbulb"></i> Structured conversation plan</h3>
+                        <div class="blueprint-stage">
+                            <h4>Opening move</h4>
+                            <p id="blueprintOpening">Introduce shared stakes before stating your position.</p>
+                        </div>
+                        <div class="blueprint-stage">
+                            <h4>Core message</h4>
+                            <p id="blueprintCore">Frame your point with curiosity and a clarifying question.</p>
+                        </div>
+                        <div class="blueprint-stage">
+                            <h4>Closing agreement</h4>
+                            <p id="blueprintClosing">Confirm next steps and invite continued dialogue.</p>
+                        </div>
+                        <button class="btn btn--secondary" id="regenerateBlueprint"><i class="fa-solid fa-arrows-rotate"></i> Refresh suggestions</button>
                     </div>
-                </div>
-        
-                <div class="emergency-kit">
-                    <h4>🚨 Emergency Diplomatic Phrases (Use With Caution)</h4>
-                    <ul class="funny-phrases">
-                        <li>"That's above my pay grade... which reminds me, about that raise..."</li>
-                        <li>"Let me circle back to that... *starts walking in actual circles*"</li>
-                        <li>"I'm glad you brought that up... I wish you hadn't, but I'm pretending to be glad."</li>
-                        <li>"Let's put a pin in that... *frantically searches for actual pin*"</li>
-                    </ul>
-                </div>
-        
-                <div class="translation-guide">
-                    <h3>🎭 What They Say vs. What They Mean</h3>
-                    <div class="translation-item">
-                        <p class="diplomatic">"We should consider all perspectives..."</p>
-                        <p class="reality">Translation: "Your idea is terrible but I'm too polite to say it."</p>
+                    <div class="card blueprint-side">
+                        <h3><i class="fa-solid fa-scale-balanced"></i> Strategic reminders</h3>
+                        <ul class="reminder-list" id="reminderList"></ul>
+                        <div class="daily-challenge">
+                            <h4><i class="fa-solid fa-bolt"></i> Daily micro-challenge</h4>
+                            <p id="challengeText">Reflect on a time you changed your mind and why.</p>
+                            <button class="btn btn--ghost" id="newChallenge">New challenge</button>
+                        </div>
                     </div>
-                    <div class="translation-item">
-                        <p class="diplomatic">"Let's table this discussion..."</p>
-                        <p class="reality">Translation: "I'd rather fight a bear than continue this conversation."</p>
+                    <div class="card blueprint-side">
+                        <h3><i class="fa-solid fa-people-arrows"></i> Relationship radar</h3>
+                        <p>Gauge how your stance aligns with your conversation partner.</p>
+                        <canvas id="relationshipChart" aria-label="Relationship alignment radar"></canvas>
+                        <p class="chart-footnote">Aim for overlap in at least three dimensions.</p>
                     </div>
-                    <div class="translation-item">
-                        <p class="diplomatic">"That's an interesting approach..."</p>
-                        <p class="reality">Translation: "What planet are you from?"</p>
-                    </div>
-                </div>
-        
-                <div class="survival-tips">
-                    <h4>🦮 Survival Tips for Awkward Situations</h4>
-                    <ul class="funny-tips">
-                        <li>When in doubt, pretend your Zoom froze</li>
-                        <li>Master the art of the strategic coffee sip</li>
-                        <li>Develop a mysterious cough that only appears during difficult questions</li>
-                        <li>Perfect the "thoughtful nod" while internally panicking</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="quiz" class="section">
-            <h2>Knowledge Check</h2>
-            <div class="quiz-container">
-                <div class="quiz-question">
-                    <p>1. Which phrase is most diplomatic when disagreeing?</p>
-                    <div class="options">
-                        <button class="option">A) "You're wrong because..."</button>
-                        <button class="option">B) "I see your point, however..."</button>
-                        <button class="option">C) "Actually, that's not correct..."</button>
-                        <button class="option">D) "No offense, but..."</button>
+        <section class="page-section" id="practice">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 05</p>
+                    <h2>Practice studio</h2>
+                    <p>Run simulated exchanges, rehearse boundary statements, and steady your breathing before the real conversation.</p>
+                </div>
+                <div class="practice-grid">
+                    <div class="card scenario-card">
+                        <div class="scenario-header">
+                            <h3><i class="fa-solid fa-masks-theater"></i> Scenario simulator</h3>
+                            <button class="btn btn--ghost" id="newScenario">Shuffle</button>
+                        </div>
+                        <p id="scenarioText">Your colleague dismisses your data as "just feelings" in front of the team.</p>
+                        <div class="scenario-response">
+                            <h4>Suggested response</h4>
+                            <p id="scenarioResponse">“I hear that you value concrete metrics. Here's the data source behind my perspective, and I'm curious what feels missing to you.”</p>
+                        </div>
+                        <div class="scenario-steps" id="scenarioSteps"></div>
+                    </div>
+                    <div class="card breathing-card">
+                        <h3><i class="fa-solid fa-wind"></i> 4-7-8 breathing coach</h3>
+                        <div class="breath-circle" id="breathCircle"></div>
+                        <p id="breathInstruction">Inhale… 4</p>
+                        <div class="breathing-controls">
+                            <button class="btn btn--primary" id="startBreathing">Start</button>
+                            <button class="btn btn--ghost" id="stopBreathing">Stop</button>
+                        </div>
+                    </div>
+                    <div class="card practice-card">
+                        <h3><i class="fa-solid fa-clipboard-check"></i> Boundary rehearsal</h3>
+                        <p>Record your personal lines in the sand. We'll keep them ready for when pressure rises.</p>
+                        <textarea id="boundaryInput" rows="6" placeholder="e.g., “I’m happy to keep discussing, but I won't entertain personal attacks.”"></textarea>
+                        <button class="btn btn--secondary" id="saveBoundary">Save boundary</button>
+                        <ul class="boundary-list" id="boundaryList"></ul>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="quiz-question">
-                    <p>2. What is the best approach when discussing a sensitive topic?</p>
-                    <div class="options">
-                        <button class="option">A) State your opinion immediately and firmly</button>
-                        <button class="option">B) Avoid the topic entirely</button>
-                        <button class="option">C) Listen first, then acknowledge others' views before sharing yours</button>
-                        <button class="option">D) Change the subject quickly</button>
+        <section class="page-section alt" id="journal">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 06</p>
+                    <h2>Reflection &amp; growth journal</h2>
+                    <p>Capture insights from real conversations. Trendlines reveal how your diplomacy muscles strengthen over time.</p>
+                </div>
+                <div class="journal-grid">
+                    <div class="card journal-card">
+                        <h3><i class="fa-solid fa-pen-to-square"></i> New reflection</h3>
+                        <form id="journalForm" class="journal-form">
+                            <label>Conversation highlight
+                                <input type="text" id="journalTitle" placeholder="e.g., Budget stand-off" required />
+                            </label>
+                            <label>What worked well?
+                                <textarea id="journalWin" rows="3" required></textarea>
+                            </label>
+                            <label>What needs refinement?
+                                <textarea id="journalGrowth" rows="3" required></textarea>
+                            </label>
+                            <label>Emotional temperature afterward
+                                <select id="journalMood">
+                                    <option value="Empowered">Empowered</option>
+                                    <option value="Measured">Measured</option>
+                                    <option value="Drained">Drained</option>
+                                    <option value="Inspired">Inspired</option>
+                                    <option value="Unresolved">Unresolved</option>
+                                </select>
+                            </label>
+                            <button type="submit" class="btn btn--primary">Log reflection</button>
+                        </form>
+                    </div>
+                    <div class="card journal-card">
+                        <h3><i class="fa-solid fa-chart-line"></i> Momentum tracker</h3>
+                        <canvas id="journalChart" aria-label="Journal mood chart"></canvas>
+                        <p class="chart-footnote">Each log boosts your skill mastery score.</p>
+                    </div>
+                    <div class="card journal-card">
+                        <h3><i class="fa-solid fa-book-open"></i> Reflection archive</h3>
+                        <ul class="journal-list" id="journalList"></ul>
+                        <button class="btn btn--ghost" id="clearJournal">Clear archive</button>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="quiz-question">
-                    <p>3. Which technique is most effective for maintaining relationships while disagreeing?</p>
-                    <div class="options">
-                        <button class="option">A) Finding common ground before addressing differences</button>
-                        <button class="option">B) Stating facts without considering emotions</button>
-                        <button class="option">C) Avoiding all potential conflicts</button>
-                        <button class="option">D) Using humor to dismiss opposing views</button>
+        <section class="page-section" id="resources">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Step 07</p>
+                    <h2>Resource vault</h2>
+                    <p>Deep dives, quick primers, and playful prompts to sharpen your diplomatic superpowers.</p>
+                </div>
+                <div class="resources-grid">
+                    <div class="card resource-card">
+                        <button class="resource-accordion" aria-expanded="false">Rapid reframing guide</button>
+                        <div class="resource-panel">
+                            <ul>
+                                <li>Swap accusations for invitations.</li>
+                                <li>Use “What I’m noticing…” instead of “You always…”</li>
+                                <li>End with a bridge question that starts with “How might…?”</li>
+                            </ul>
+                        </div>
+                        <button class="resource-accordion" aria-expanded="false">Evidence &amp; empathy checklist</button>
+                        <div class="resource-panel">
+                            <ul>
+                                <li>One statistic or data point.</li>
+                                <li>One lived experience example.</li>
+                                <li>One question that invites their perspective.</li>
+                            </ul>
+                        </div>
+                        <button class="resource-accordion" aria-expanded="false">Language swaps</button>
+                        <div class="resource-panel">
+                            <ul>
+                                <li>“You’re wrong” → “Can we test another angle?”</li>
+                                <li>“Calm down” → “What would make this feel safer?”</li>
+                                <li>“I disagree” → “I’m seeing it differently because…”</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card resource-card">
+                        <h3><i class="fa-solid fa-language"></i> Multilingual empathy cues</h3>
+                        <p class="resource-note">Hover to reveal translations.</p>
+                        <div class="language-cards" id="languageCards"></div>
+                    </div>
+                    <div class="card resource-card">
+                        <h3><i class="fa-solid fa-question"></i> Lightning quiz</h3>
+                        <p>Scenario-based questions with instant feedback.</p>
+                        <div id="quizContainer"></div>
+                        <button class="btn btn--secondary" id="restartQuiz">Restart quiz</button>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="quiz-question">
-                    <p>4. When is it appropriate to use the "political dodge" technique?</p>
-                    <div class="options">
-                        <button class="option">A) Whenever you disagree with someone</button>
-                        <button class="option">B) When addressing sensitive workplace topics</button>
-                        <button class="option">C) Never, honesty is always best</button>
-                        <button class="option">D) When a direct answer could harm relationships or careers</button>
-                    </div>
+        <section class="page-section alt" id="connect">
+            <div class="shell">
+                <div class="section-header">
+                    <p class="section-eyebrow">Stay in motion</p>
+                    <h2>Weekly experiments for courageous conversations</h2>
+                    <p>Join thousands of learners receiving one high-impact exercise every Friday.</p>
                 </div>
-
-                <div class="quiz-question">
-                    <p>5. What's the best way to express disagreement with a popular opinion?</p>
-                    <div class="options">
-                        <button class="option">A) Wait for someone else to disagree first</button>
-                        <button class="option">B) Express your view with supporting evidence and respect</button>
-                        <button class="option">C) Stay silent to avoid conflict</button>
-                        <button class="option">D) Use anonymous online platforms</button>
-                    </div>
+                <form class="card subscribe-form" id="subscribeForm">
+                    <label for="subscribeEmail">Email address</label>
+                    <input type="email" id="subscribeEmail" placeholder="you@example.com" required />
+                    <button type="submit" class="btn btn--primary">Send me the experiments</button>
+                    <p class="form-note" id="subscribeStatus"></p>
+                </form>
+                <div class="community-card">
+                    <h3><i class="fa-solid fa-seedling"></i> Community prompts</h3>
+                    <ul id="communityPrompts"></ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <p>Lesson Progress: <span id="progress-text">0%</span></p>
-        </div>
-
-        <div class="final-thoughts">
-            <h3>Key Takeaways</h3>
-            <ul>
-                <li>💡 Diplomatic expression doesn't mean compromising your values</li>
-                <li>🤝 Active listening is as important as speaking</li>
-                <li>🌍 Cultural awareness enhances communication</li>
-                <li>⚖️ Balance honesty with sensitivity</li>
-            </ul>
-        </div>
-
-        <div class="resources">
-            <h3>Additional Resources</h3>
-            <ul>
-                <li>📚 Communication Skills Guide</li>
-                <li>🎯 Conflict Resolution Techniques</li>
-                <li>🤝 Cross-Cultural Communication Tips</li>
-            </ul>
+    <footer class="footer">
+        <div class="shell footer__grid">
+            <div>
+                <p class="brand__eyebrow">Diplomatic Toolkit</p>
+                <h3 class="brand__title">Express with integrity. Listen with intention.</h3>
+            </div>
+            <div class="footer__links">
+                <a href="#top">Back to top</a>
+                <a href="#persona">Blueprint</a>
+                <a href="#resources">Resources</a>
+            </div>
+            <p class="footer__note">&copy; 2025 The Art of Expressing Opinions. Built to help humans disagree beautifully.</p>
         </div>
     </footer>
 
-    <div class="popup" id="definition-popup">
-        <div class="popup-content">
-            <h3>Definition</h3>
-            <p id="definition-text"></p>
-            <button class="close-btn">×</button>
-        </div>
-    </div>
-
-    <div class="popup" id="quiz-results">
-        <div class="popup-content">
-            <h3>Quiz Results</h3>
-            <div id="results-content"></div>
-            <button class="retry-btn">Try Again</button>
-            <button class="close-btn">×</button>
-        </div>
-    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
